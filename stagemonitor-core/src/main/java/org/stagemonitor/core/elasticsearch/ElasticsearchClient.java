@@ -133,7 +133,7 @@ public class ElasticsearchClient {
 		sendAsJsonAsync("PUT", "/" + index, mapping);
 	}
 
-	private Future<?> sendAsJsonAsync(final String method, final String path, final Object requestBody) {
+	public Future<?> sendAsJsonAsync(final String method, final String path, final Object requestBody) {
 		if (StringUtils.isNotEmpty(corePlugin.getElasticsearchUrl())) {
 			try {
 				return asyncESPool.submit(new Runnable() {
