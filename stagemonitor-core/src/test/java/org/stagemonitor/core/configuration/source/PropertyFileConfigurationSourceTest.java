@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import java.io.File;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 public class PropertyFileConfigurationSourceTest {
@@ -14,6 +15,7 @@ public class PropertyFileConfigurationSourceTest {
 		assertEquals("bar", propertyFileConfigurationSource.getValue("foo"));
 	}
 
+	@Ignore
 	@Test
 	public void testLoadFromFileSystem() throws Exception {
 		File properties = File.createTempFile("filesystem-test", ".properties");

@@ -32,6 +32,7 @@ import static org.stagemonitor.core.metrics.metrics2.MetricName.name;
 
 public class MonitoredHttpRequest implements MonitoredRequest<HttpRequestTrace> {
 
+	public static final String STAGEMONITOR_UNIQUE_VISITOR_ID = "stagemonitor-unique-visitor-id";
 	protected final HttpServletRequest httpServletRequest;
 	protected final FilterChain filterChain;
 	protected final StatusExposingByteCountingServletResponse responseWrapper;
@@ -176,6 +177,7 @@ public class MonitoredHttpRequest implements MonitoredRequest<HttpRequestTrace> 
 		} else {
 			request.setUniqueVisitorId(StringUtils.sha1Hash(clientIp + sessionId + userAgent));
 		}
+		httpServletRequest.setAttribute(STAGEMONITOR_UNIQUE_VISITOR_ID, request.getUniqueVisitorId());
 		request.setClientIp(clientIp);
 
 		int status = responseWrapper.getStatus();
